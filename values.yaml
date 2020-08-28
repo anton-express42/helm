@@ -1,0 +1,21 @@
+
+image:
+  repository: nginx
+  tag: alpine
+
+version: 3
+
+env:
+  MY_VAR_1: my-value
+
+resources:
+  limits:
+    cpu: 30m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 10Mi
+
+ingress:
+  enabled: true
+  host: app.k8s.otpbank.ru

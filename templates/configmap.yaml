@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-nginx-config
+data:
+  # Mount this config as a file to /etc/nginx/conf.d to make it work
+  default.conf: |
+    server {
+      listen 80;
+      server_name _;
+      add_header Content-Type text/plain;
+      location / {
+        return 200 "Hello, I am app. Version: {{ .Values.version }}\n";
+      }
+      location /health {
+          return 200;
+        }
+    }
+
